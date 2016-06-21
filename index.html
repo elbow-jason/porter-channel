@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello Porter</title>
+    </head>
+    <body>
+        <div id="example">
+
+        </div>
+
+        <!-- Dependencies -->
+
+        <!-- Main -->
+        <script src="./dist/bundle.js"></script>
+        <script>
+          var livestockChannel = new Porter.Channel("livestock")
+          var element = document.getElementById("example")
+          var cowSay = ({payload}) => console.log("The Cow says \"" + payload.phrase + "\"")
+          livestockChannel.subscribe("moo", cowSay)
+          let timer = setInterval( () => livestockChannel.publish("moo", {phrase: "Beef is soooo good"}), 1000)
+        </script>
+    </body>
+</html>
